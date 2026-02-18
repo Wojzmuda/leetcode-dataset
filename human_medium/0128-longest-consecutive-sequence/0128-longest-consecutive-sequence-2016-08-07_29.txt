@@ -1,0 +1,18 @@
+class Solution(object):
+    def longestConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        numbers = dict()
+        index = 0
+        for n in nums:
+            numbers[n] = index
+            index += 1
+        djset = DisjointSet(index)
+        result = 1
+        for n in nums:
+            ind = numbers.get(n-1,-1)
+            if ind != -1:
+                result = max(result, djset.union(numbers[n], ind))
+        return result

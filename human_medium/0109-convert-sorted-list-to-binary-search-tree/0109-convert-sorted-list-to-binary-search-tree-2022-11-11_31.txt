@@ -1,0 +1,9 @@
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        arr=[]
+        curr=head
+        while curr is not None:
+            arr.append(curr.val)
+            curr=curr.next
+
+        return arr_to_tree(arr)

@@ -1,0 +1,6 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        hs={}
+        
+        # print(hs)
+        return dp(m,n,hs)

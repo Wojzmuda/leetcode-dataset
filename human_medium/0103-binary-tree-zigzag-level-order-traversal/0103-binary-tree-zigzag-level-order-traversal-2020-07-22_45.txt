@@ -1,0 +1,9 @@
+class Solution:
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        l.clear()
+        c.clear()
+        solve(root,0)
+        for i in range(len(l)):
+            if len(l[i])==0:
+                l.remove(l[i])
+        return l

@@ -1,0 +1,33 @@
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        
+        
+        @lru_cache(None)
+        def modify(i,j):
+            nonlocal word1, word2
+            
+            #base case
+            if i == len(word1):
+                if j == len(word2):
+                    return 0
+                return len(word2)-j
+            elif j == len(word2):
+                if i == len(word1): return 0
+                else:
+                    return len(word1)-i
+            
+            tempMinChanges = inf
+            if word1[i] == word2[j]:
+                return modify(i+1,j+1)
+            else:
+                #insert char
+                tempMinChanges = min(tempMinChanges,modify(i,j+1))
+                #delete
+                tempMinChanges = min(tempMinChanges,modify(i+1,j))
+                #replace
+                tempMinChanges = min(tempMinChanges,modify(i+1,j+1))
+            return 1 + tempMinChanges
+            
+            
+        
+        return modify(0,0)

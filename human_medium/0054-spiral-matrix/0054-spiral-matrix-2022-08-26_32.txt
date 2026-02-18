@@ -1,0 +1,7 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        dfs.result = []
+        
+        dfs(matrix, 0, 0)
+        
+        return dfs.result

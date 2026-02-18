@@ -1,0 +1,16 @@
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        lst=[]
+        def helper(root,level):
+            if root:
+                if level>=len(lst):
+                    lst.append([root.val])
+                else:
+                    lst[level].append(root.val)
+                helper(root.left,level+1)
+                helper(root.right,level+1)
+        helper(root,0)
+        ans=[]
+        for i in lst:
+            ans.append(i[-1])
+        return ans

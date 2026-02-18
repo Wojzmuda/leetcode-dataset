@@ -1,0 +1,22 @@
+class Solution:
+    def connect(self, root: \'Optional[Node]\') -> \'Optional[Node]\':
+        if root is None:
+            return root
+        
+        queue = []
+        queue.append(root)
+        
+        while queue:
+            temp = []
+            while queue:
+                # when this queue will be empty, it means 1 level is complete
+                cur = queue.pop(0)
+                if cur.left:
+                    temp.append(cur.left)
+                if cur.right:
+                    temp.append(cur.right)
+            for i in range(len(temp)-1):
+                temp[i].next = temp[i+1]
+            queue.extend(temp)
+        
+        return root

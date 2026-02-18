@@ -1,0 +1,14 @@
+class Solution:
+    def recoverTree(self, root: TreeNode) -> None:
+        it = in_order(root)
+        prev, cur = TreeNode(float(\'-inf\')), next(it, None)
+        e1 = e2 = None
+        while cur:
+            if prev.val > cur.val:
+                if not e1:
+                    e1 = prev
+                e2 = cur
+            
+            prev, cur = cur, next(it, None)
+            
+        e1.val, e2.val = e2.val, e1.val

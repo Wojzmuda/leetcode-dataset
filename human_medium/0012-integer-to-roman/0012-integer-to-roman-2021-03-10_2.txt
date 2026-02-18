@@ -1,0 +1,8 @@
+class Solution:
+    def intToRoman(self, N: int) -> str:
+        ans = ""
+        for i in range(13):
+            while N >= val[i]:
+                ans += rom[i]
+                N -= val[i]
+        return ans

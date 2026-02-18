@@ -1,0 +1,21 @@
+class Solution:
+    def cloneGraph(self, node: \'Node\') -> \'Node\':
+        
+        
+        mapping = {}
+        
+        
+        def dfs(node):
+            if node in mapping:
+                return mapping[node]
+            
+            
+            new = Node(node.val)
+            mapping[node] = new
+            
+            for n in node.neighbors:
+                mapping[node].neighbors.append(dfs(n))
+            
+            return new  
+        
+        return dfs(node) if node else None

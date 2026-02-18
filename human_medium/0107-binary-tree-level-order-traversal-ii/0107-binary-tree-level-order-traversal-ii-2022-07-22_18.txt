@@ -1,0 +1,21 @@
+class Solution:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return root
+
+        result = []
+        queue = deque([root])
+        while queue:
+            newLevel = []
+            for _ in range(len(queue)):
+                currNode = queue.popleft()
+                newLevel.append(currNode.val)
+                if currNode.left:
+                    queue.append(currNode.left)
+                if currNode.right:
+                    queue.append(currNode.right)
+
+            result.append(newLevel)
+
+
+        return result[::-1]

@@ -1,0 +1,35 @@
+class Solution:
+    #T=O(n), S=O(1)
+    def nextPermutation(self, nums: List[int]) -> None:
+        #init pointers
+        pivot = right = len(nums)-1
+        #find pivot item
+        #pivot = last increasing ordered element starting from the end of the array
+        while pivot > 0 and nums[pivot-1] >= nums[pivot]:
+            pivot -= 1
+        
+        #edge case
+        if pivot == 0:
+            nums.reverse()
+            return
+        
+        #reassign pivot to the left adjacent item of the pivot
+        pivot = pivot-1
+        #find the first number greater then nums[pivot] starting from end of the array
+        while nums[pivot] >= nums[right]:
+            right -= 1
+        
+        #Now pointers are pointing at two different positions
+        #pivot = first non-ascending number from end of array
+        #right = first number greater than nums[pivot]
+        #swap pivot and right indexed items
+        nums[pivot], nums[right] = nums[right], nums[pivot]
+        
+        #init pointers to (pivot+1) for the suffix and end of the array
+        left, right = pivot+1, len(nums)-1
+        #reverse the sequence strating from pivot to end
+        while left < right:
+            #swap the items and move the pointers
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1

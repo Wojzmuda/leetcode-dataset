@@ -1,0 +1,34 @@
+class Solution:
+    def cloneGraph(self, node: \'Node\') -> \'Node\':
+        
+        # Base case
+        if node is None:
+            return None
+        
+        # Standard BFS Procedure
+        mapping = dict()
+        queue = deque()
+        
+        # Populate queue and map with
+        # starting node
+        queue.appendleft(node)
+        mapping[node] = Node(node.val)
+        
+        while queue:
+            
+            curr = queue.pop()
+            
+            # go through each neighbors
+            for neighbor in curr.neighbors:
+                # If not in map then populate it
+                # And since its not visited add to queue
+                # to visit later
+                if neighbor not in mapping:
+                    mapping[neighbor] = Node(neighbor.val)
+                    queue.appendleft(neighbor)
+            
+                # Add the neighbor as a neighbor to parent
+                mapping[curr].neighbors.append(mapping[neighbor])
+                
+        # return the Start node from map
+        return mapping[node]

@@ -1,0 +1,16 @@
+class Solution:
+    def connect(self, root: \'Node\') -> \'Node\':
+        if not root:
+            return None
+        level = [root]    
+        while level:
+            curlevel = []
+            for i, node in enumerate(level):
+                if i > 0:
+                    level[i-1].next = node 
+                if node.left:
+                    curlevel.append(node.left)
+                if node.right:
+                    curlevel.append(node.right)
+            level = curlevel
+        return root

@@ -1,0 +1,8 @@
+class Solution(object):
+    def permuteUnique(self, nums):
+        l1=[]
+        s1={}
+        if(len(nums)>=1 and len(nums)<=8):
+            perm=permutations(nums)
+            perm=list(set(perm))
+            return perm

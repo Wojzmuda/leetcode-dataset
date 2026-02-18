@@ -1,0 +1,19 @@
+class Solution:
+    def copyRandomList(self, head: \'Optional[Node]\') -> \'Optional[Node]\':
+        dp = {}
+        
+        def clone(node):
+            if not node:
+                return None
+            if node in dp:
+                return dp[node]
+            
+            temp = Node(node.val, next = None, random = None)
+            dp[node] = temp
+            temp.next = clone(node.next)
+            temp.random = clone(node.random)
+            
+            return dp[node]
+            
+
+        return clone(head)

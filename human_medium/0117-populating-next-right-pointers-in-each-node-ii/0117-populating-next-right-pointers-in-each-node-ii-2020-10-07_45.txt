@@ -1,0 +1,15 @@
+class Solution:
+    def connect(self, root: \'Node\') -> \'Node\':
+        Q = deque([root]) if root else [] 
+        while Q:
+            m = len(Q)
+            while m:
+                m -= 1
+                node = Q.popleft()
+                if m != 0:
+                    node.next = Q[0]
+                if node.left:
+                    Q.append(node.left)
+                if node.right:
+                    Q.append(node.right)
+        return root

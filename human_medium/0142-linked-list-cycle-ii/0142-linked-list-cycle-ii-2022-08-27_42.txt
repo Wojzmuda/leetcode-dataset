@@ -1,0 +1,10 @@
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        s=set()        ## using set for constant time access
+        start=head
+        while start:
+            if start not in s:     ######if node already exists in set this means there is a cycle(\'pointer back to visited node\')
+                s.add(start)
+            else:
+                return start
+            start=start.next

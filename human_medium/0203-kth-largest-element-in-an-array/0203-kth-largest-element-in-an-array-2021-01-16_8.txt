@@ -1,0 +1,23 @@
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if not nums:
+            return -1
+        
+        max_ = max(nums)
+        min_ = min(nums)
+        maps = {n:0 for n in range(min_, max_+1) }
+        for num in nums:
+            maps[num]+=1
+        
+        print(list(maps.keys()))
+        # Please note, the keys of the dictionary is not 
+        # necessarily sorted, it just perserved the insertion order
+        # when I generate the dictionary as
+        # maps = {n:0 for n in range(min_, max_+1) }
+        # but we can now take this advantage to get a 
+        # sorted key without sorting
+        for key in list(maps.keys())[::-1]:
+            if k - maps[key] <= 0:
+                return key
+            else:
+                k -= maps[key]

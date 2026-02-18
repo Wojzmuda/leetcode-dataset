@@ -1,0 +1,13 @@
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        nums = []
+        while head:
+            nums.append(head.val)
+            head = head.next
+        def bst(nums: List[int]):
+            if not nums:
+                    return 
+            mid = len(nums)//2
+            newNode = TreeNode(nums[mid], bst(nums[:mid]), bst(nums[mid + 1:]))
+            return newNode 
+        return bst(nums)

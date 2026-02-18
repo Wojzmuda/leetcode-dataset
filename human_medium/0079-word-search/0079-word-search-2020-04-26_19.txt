@@ -1,0 +1,7 @@
+class Solution:
+    def exist(self, board, word):
+        for r, row in enumerate(board):
+            for c, l in enumerate(row):
+                if dfs(board, word, r, c, []):
+                    return True
+        return False

@@ -1,0 +1,11 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        if not s or not wordDict:
+            return False
+        
+        trie = Trie()
+        
+        for word in wordDict:
+            trie.add(word)
+        
+        return trie.search(s)

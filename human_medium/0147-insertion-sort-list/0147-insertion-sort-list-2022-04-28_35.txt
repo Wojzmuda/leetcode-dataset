@@ -1,0 +1,21 @@
+class Solution:
+    def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        arr = []
+        
+        dummy = ListNode
+        ans = dummy
+        while head : 
+            arr.append(head.val)
+            head = head.next
+            
+        arr.sort()
+
+        length = len(arr)
+        i=0
+        while i< length:
+            dummy.next=ListNode(arr[i])
+            dummy= dummy.next
+            i +=1
+            
+        
+        return ans.next

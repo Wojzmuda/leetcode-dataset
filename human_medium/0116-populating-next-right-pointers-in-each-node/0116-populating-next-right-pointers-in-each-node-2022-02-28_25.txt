@@ -1,0 +1,14 @@
+class Solution:
+    def connect(self, root):
+        if root != None:
+            level = [root]
+            while len(level)>0:
+                i = 0
+                while i<len(level)-1:
+                    level[i].next = level[i+1]
+                    i += 1
+                childNodes = []
+                for node in level:
+                    childNodes.extend([node.left, node.right])
+                level = [node for node in childNodes if node != None]
+        return root

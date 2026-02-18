@@ -1,0 +1,46 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        
+        # Sort the input \'nums\' list
+        list.sort(nums)
+        
+        subsets = []
+        
+        # Start with an empty set: [[]]
+        subsets.append([])  # add the initial empty set, as all solutions will have this set
+        
+        if (len(nums) == 0):
+            # Base case where the input \'nums\' array is empty, so we only return the empty set
+            return subsets
+        
+        startIndex, endIndex = 0, 0  # pointers used to choose/skip-ahead in \'subsets\' list
+        
+        # \'for\' loop to iterate through all values in input array \'nums\' 
+        for i in range(len(nums)):
+            startIndex = 0  # set \'startIndex\' to 0 at the start of each iteration
+            
+            
+            # if current and the previous elements are same, create new subsets only from the subsets added in the previous step
+            if (i > 0) and (nums[i] == nums[i - 1]):
+                startIndex = endIndex + 1  # \'startIndex\' begins from the next iteration after current \'endIndex\' value
+                
+            endIndex = len(subsets) - 1  # move \'endIndex\' to the end of the current \'subsets\' list
+    
+            # \'for\' loop to iterate through CHOSEN indexes of \'subsets\' list. indexes chosen by:
+                # (i) if current element is NOT a duplicate: startIndex = 0, endIndex = len(subsets) - 1
+                # (ii) if current element IS a duplicate: startIndex = \'endIndex\' (from previous iteration) + 1. the \'endIndex\' from previous iteration will be: length of \'subsets\' list in previous iteration - 1. therefore the startIndex will start from the \'subsets\' index of sets created in previous iteration. then endIndex will be the endIndex = len(\'subsets\') (from current iteration) - 1
+            
+            for j in range(startIndex, endIndex + 1):
+                # create a new subset from the CHOSEN (rules above) subset and add current element to it
+                newSet = list(subsets[j])
+                newSet.append(nums[i])
+                subsets.append(newSet)
+                
+        
+        return subsets
+    
+    
+    
+    # Time Complexity: O(N*2^N).
+
+    # Space Complexity: O(N*2^N).

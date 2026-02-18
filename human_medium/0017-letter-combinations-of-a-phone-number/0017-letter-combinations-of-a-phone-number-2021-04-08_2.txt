@@ -1,0 +1,12 @@
+class Solution:
+    def letterCombinations(self, D: str) -> List[str]:
+        lenD, ans = len(D), []
+        if D == "": return []
+        def dfs(pos: int, st: str):
+            if pos == lenD: ans.append(st)
+            else:
+                letters = L[D[pos]]
+                for letter in letters:
+                    dfs(pos+1,st+letter)
+        dfs(0,"")
+        return ans

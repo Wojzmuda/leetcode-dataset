@@ -1,0 +1,29 @@
+class Solution:
+def subsets(self, nums: List[int]) -> List[List[int]]:
+
+	subsets = []
+
+	# 1. Start with an empty set: [[]]
+	subsets.append([])  # add the initial empty set, all solutions will have this set
+
+	if (len(nums) == 0):
+		# Base case where the input \'nums\' array is empty, so we only return the empty set
+		return result
+
+	# \'for\' loop to iterate through all values in input array \'nums\' 
+	for currentNumber in nums:
+		# we will take all existing subsets and insert the current number in them to create new subsets
+		# \'for\' loop to iterate through all elements/subsets in \'subsets\' list
+		for i in range(len(subsets)):
+			# create a new subset from the existing subset and insert the current element to it
+			newSet = list(subsets[i])
+			newSet.append(currentNumber)
+			subsets.append(newSet)
+
+	return subsets
+
+
+
+# Time Complexity: O(N*2^N).
+
+# Space Complexity: O(N\u22172^N).

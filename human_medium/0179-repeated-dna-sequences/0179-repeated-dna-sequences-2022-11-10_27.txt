@@ -1,0 +1,14 @@
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        charS = set()
+        res = []
+
+        for i  in range(len(s)-9):
+            #print(s[i:i+10])
+            if s[i:i+10] not in charS:
+                charS.add(s[i:i+10])
+            else:
+                res.append(s[i:i+10])
+                
+        res = remove_duplicates(res)
+        return res

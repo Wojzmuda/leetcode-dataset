@@ -1,0 +1,19 @@
+class Solution:
+    def zigzagLevelOrder(self, root):
+        result, nodes, direction = [], [root], True
+        if root!=None:
+            while len(nodes)>0:
+                tempResult, childNodes = [], []
+                while len(nodes)>0:
+                    temp = nodes.pop()
+                    tempResult.append(temp.val)
+                    if direction:
+                        childNodes.append(temp.left)
+                        childNodes.append(temp.right)
+                    else:
+                        childNodes.append(temp.right)
+                        childNodes.append(temp.left)
+                result.append(tempResult)
+                nodes = [node for node in childNodes if node!=None]
+                direction = not direction
+        return result

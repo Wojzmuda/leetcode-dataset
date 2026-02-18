@@ -1,0 +1,19 @@
+class Solution:
+    def cloneGraph(self, node: \'Node\') -> \'Node\':
+        
+        if not node: return node
+        
+        visited = {}
+
+        Q = deque([node])
+        visited[node] = Node(node.val, [])
+
+        while Q:
+            currNode = Q.popleft()
+            for neighbor in currNode.neighbors:
+                if neighbor not in visited:
+                    visited[neighbor] = Node(neighbor.val, [])
+                    Q.append(neighbor)
+                visited[currNode].neighbors.append(visited[neighbor])
+
+        return visited[node]

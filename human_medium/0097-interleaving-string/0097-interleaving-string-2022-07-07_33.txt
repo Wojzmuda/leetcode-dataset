@@ -1,0 +1,4 @@
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        mp={}
+        return Interleave(s1,s2,s3,mp)

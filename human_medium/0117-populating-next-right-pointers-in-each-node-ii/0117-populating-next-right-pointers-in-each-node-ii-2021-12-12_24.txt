@@ -1,0 +1,24 @@
+class Solution:
+    def connect(self, root: Optional[Node]) -> Optional[Node]:
+
+        current_level_node = root
+
+        while current_level_node:
+
+            next_level_current_node = next_level_head_node = Node(0)
+
+            while current_level_node:
+
+                if current_level_node.left:
+                    next_level_current_node.next = current_level_node.left
+                    next_level_current_node = current_level_node.left
+
+                if current_level_node.right:
+                    next_level_current_node.next = current_level_node.right
+                    next_level_current_node = current_level_node.right
+
+                current_level_node = current_level_node.next
+
+            current_level_node = next_level_head_node.next
+
+        return root

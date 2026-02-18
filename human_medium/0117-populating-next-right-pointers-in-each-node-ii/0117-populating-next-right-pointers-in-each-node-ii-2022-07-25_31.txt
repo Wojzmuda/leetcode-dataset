@@ -1,0 +1,18 @@
+class Solution:
+    def connect(self, root: \'Node\') -> \'Node\':
+        if not root: return root
+        q = [root]
+        
+        while q:
+            l = len(q)
+            
+            # update the field of next
+            for i in range(l - 1):
+                q[i].next = q[i+1]
+            
+            # pop up all the nodes and append their non-none children
+            for i in range(l):
+                head = q.pop(0)
+                if head.left: q.append(head.left)
+                if head.right: q.append(head.right)
+        return root

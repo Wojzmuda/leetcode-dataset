@@ -1,0 +1,18 @@
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        
+        def root(l):
+            if l != []:
+                mid =len(l)//2
+                node = TreeNode(l[mid])
+                node.left = root(l[:mid])
+                node.right = root(l[mid+1:])
+                return node
+            else:
+                return None
+            
+        l = []
+        while(head):
+            l.append(head.val)
+            head = head.next
+        return root(l)`

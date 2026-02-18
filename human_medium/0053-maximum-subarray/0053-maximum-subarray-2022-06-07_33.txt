@@ -1,0 +1,7 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        maxResult = currSum = nums[0]
+        for num in nums[1:]:
+            currSum = max(currSum+num, num)
+            maxResult= max(maxResult,currSum)
+        return maxResult

@@ -1,0 +1,11 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        jumps = [float(\'inf\')] * n
+        jumps[n - 1] = 0
+        segtree = SegTree(jumps)
+        for i in range(n - 2, -1, -1):
+            if nums[i] > 0:
+                jumps[i] = 1 + segtree.minRange(i + 1, min(i + nums[i], n - 1))
+            segtree.update(i, jumps[i])
+        return jumps[0]

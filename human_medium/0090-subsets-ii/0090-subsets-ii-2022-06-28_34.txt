@@ -1,0 +1,27 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        
+        #Global variables
+        res = []
+        subset= []
+        
+        def dfs(i):
+            
+            #Base Case
+            if i >= len(nums): #LVI
+                if subset.copy() not in res:#Preventon step
+                    res.append(subset.copy())
+                return
+            
+            subset.append(nums[i])
+            #RightSubtree
+            dfs(i+1)
+            subset.pop()
+            #Left subtree
+            dfs(i+1)
+        
+        #To get the extra combinations of similar subset  **[1,4,4,4]** present in "res" same as **[1,4,4,4]** not as **[4,1,4,4]**
+        nums.sort()
+        
+        dfs(0)
+        return res

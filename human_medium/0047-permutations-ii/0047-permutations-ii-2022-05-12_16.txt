@@ -1,0 +1,20 @@
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        def helper(arr):
+            # if the list has one element, return it as a list of list
+            if len(arr)==1:
+                return [arr]
+            temp = []
+            visited = set()
+            #visited set is to make sure we dont construct the same list again
+            # ignore the current index, pass the remaining values to helper.
+            for i in range(len(arr)):
+                if arr[i] not in visited:
+                    visited.add(arr[i])
+                    res = helper(arr[:i]+arr[i+1:])
+                    # take the result and add the ignored value to the result
+                    for item in res:
+                        temp.append([arr[i]]+item)
+            return temp
+        
+        return helper(nums)

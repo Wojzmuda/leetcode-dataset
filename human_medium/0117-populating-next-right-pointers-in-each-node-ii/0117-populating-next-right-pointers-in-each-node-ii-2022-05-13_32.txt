@@ -1,0 +1,24 @@
+class Solution:   
+    def connect(self, root: \'Node\') -> \'Node\':
+        def node_list(node):
+            while node:
+                if node.left:
+                    yield node.left
+                if node.right:
+                    yield node.right
+                node = node.next
+                
+        head = root
+        has_head = True
+        
+        while has_head:
+            has_head = False
+            temp = head
+            for node in node_list(head):
+                if not has_head:
+                    has_head = True
+                    head = node
+                else:
+                    temp.next = node
+                temp = node
+        return root
